@@ -62,15 +62,6 @@ Also, the project code contains various tasks, which are detailed step-by-step i
 
 
 ## Installation Instructions for Running Locally
-
-### Important Note
-
-Some files in this repository were not uploaded because they were large in size. If you want the repo to work correctly, make sure the following files are in the structure:
-
-- dataset
-- results
-- SFA3D
-
 ### Cloning the Project
 In order to create a local copy of the project, please click on "Code" and then "Download ZIP". Alternatively, you may of-course use GitHub Desktop or Git Bash for this purpose. 
 

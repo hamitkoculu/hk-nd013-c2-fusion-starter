@@ -42,13 +42,11 @@ class Track:
 #                        [ 0.        ],
 #                        [ 0.        ]])
         # transform measurement to vehicle coordinates
-        ##### センサ座標から車座標に変換
         pos_sens = np.ones((4, 1)) # homogeneous coordinates
         pos_sens[0:3] = meas.z[0:3]
         pos_veh = meas.sensor.sens_to_veh*pos_sens
 
         # save initial state from measurement
-        ##### x初期値化
         self.x = np.asmatrix(np.zeros((6,1)))
         self.x[0:3] = pos_veh[0:3]
         
@@ -59,7 +57,6 @@ class Track:
 #                        [0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 2.5e+03, 0.0e+00],
 #                        [0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 2.5e+01]])
         # set up position estimation error covariance
-        ##### 位置の推定エラー分散を設定
         P_pos = M_rot * meas.R * M_rot.T
 
         # set up velocity estimation error covariance
@@ -129,11 +126,9 @@ class Trackmanagement:
         ############
         
         # decrease score for unassigned tracks
-        # 割り当てられていないトラックのスコアを下げる
         for i in unassigned_tracks:
             track = self.track_list[i]
             # check visibility    
-            # 視認性を確認する
             if meas_list: # if not empty
                 if meas_list[0].sensor.in_fov(track.x):
                     # your code goes here
@@ -145,7 +140,6 @@ class Trackmanagement:
             P_of_x = track.P[0, 0]
             P_of_y = track.P[1, 1]
             P_ave = np.sqrt(P_of_x**2 + P_of_y**2)
-            ##### 確定('confirmed')状態時にスコアが削除閾値を下回った場合、あるいは分散Pが上限を超えた場合
             if (track.score < params.delete_threshold and track.state == 'confirmed') or P_ave > params.max_P:
                 self.delete_track(track)
 

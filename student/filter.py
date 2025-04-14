@@ -44,7 +44,7 @@ class Filter:
 #                        [0, 0, 0, 0, 1,  0],
 #                        [0, 0, 0, 0, 0,  1]
 #                      ])
-        ##### review修正 
+        ##### review
         dt = params.dt
         F = np.matrix([  [1,0,0,dt,0,0],
                          [0,1,0,0,dt,0],
